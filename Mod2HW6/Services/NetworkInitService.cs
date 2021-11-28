@@ -1,4 +1,5 @@
-﻿using Mod2HW6.Models.ElectricalApps;
+﻿using Mod2HW6.Interfaces;
+using Mod2HW6.Models.ElectricalApps;
 using Mod2HW6.Models.ElectricalApps.KitchenApp.CoffeeMachine;
 using Mod2HW6.Models.ElectricalApps.KitchenApp.Microwave;
 using Mod2HW6.Models.ElectricalApps.LargeApps.Fridge;
@@ -7,7 +8,7 @@ using Mod2HW6.Models.ElectricalApps.LargeApps.Washing;
 
 namespace Mod2HW6.Services
 {
-    public class NetworkInitService
+    public class NetworkInitService : INetworkInitialize
     {
         private readonly ElectricalApps[] _apps;
 
