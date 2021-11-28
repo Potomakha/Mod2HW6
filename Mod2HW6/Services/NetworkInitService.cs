@@ -23,5 +23,10 @@ namespace Mod2HW6.Services
                 new FullFridge { Name = "Холодос", Power = 777, SwithedOn = true }
             };
         }
+
+        public ElectricalApps[] GetAll()
+        {
+            return _apps;
+        }
     }
 }
