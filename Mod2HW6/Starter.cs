@@ -1,4 +1,7 @@
-﻿using Mod2HW6.Interfaces;
+﻿using System;
+using System.Text;
+using Mod2HW6.Interfaces;
+using Mod2HW6.Models.ElectricalApps;
 using Mod2HW6.Services;
 
 namespace Mod2HW6
@@ -7,14 +10,16 @@ namespace Mod2HW6
     {
         private readonly IDeviceContainer _deviceContainer;
         private readonly INetworkInitialize _networkInitService;
+        private readonly IPowerCalculation _powerCalculation;
 
         // public Starter()
         // {
         // }
-        public Starter(IDeviceContainer deviceContainer, INetworkInitialize networkInitialize)
+        public Starter(IDeviceContainer deviceContainer, INetworkInitialize networkInitialize, IPowerCalculation powerCalculation)
         {
             _deviceContainer = deviceContainer;
             _networkInitService = networkInitialize;
+            _powerCalculation = powerCalculation;
         }
 
         public void Run()
@@ -30,6 +35,27 @@ namespace Mod2HW6
             }
 
             devices = _deviceContainer.GetComponents();
+            var totalPower = _powerCalculation.TotalPower(devices);
+
+            Console.WriteLine($"Результирующая мощность оборудования: {totalPower} B");
+            Console.WriteLine(string.Empty);
+
+            Array.Sort(devices, new AppliancesComparerService());
+            Console.WriteLine("Массив отсортирован по можности");
+            Display(devices);
+            Console.WriteLine(string.Empty);
+        }
+
+        private void Display(ElectricalApps[] array)
+        {
+            var deviceInfo = new StringBuilder();
+
+            foreach (var item in array)
+            {
+                deviceInfo.AppendLine($"{item.Name}. Мощность: {item.Power} В");
+            }
+
+            Console.Write(deviceInfo.ToString());
         }
     }
 }
