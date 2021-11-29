@@ -12,8 +12,7 @@ namespace Mod2HW6.Services
             {
                 using (StreamReader reader = new StreamReader(path))
                 {
-                    reader.ReadToEnd();
-                    return reader.ToString();
+                    return File.ReadAllText(path);
                 }
             }
             catch (Exception ex)

@@ -11,7 +11,7 @@ namespace Mod2HW6.Services
         public ElectricalNetworkService(IConfiguration configuration)
         {
             _configuration = configuration;
-            ContainerCapacity = _configuration.GetConfig().SeviceContainerConfig.ContainerCapacity;
+            ContainerCapacity = _configuration.GetConfig().DeviceContainerConfig.ContainerCapacity;
             Init();
         }
 

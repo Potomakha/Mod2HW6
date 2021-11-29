@@ -2,6 +2,6 @@
 {
     public class Config
     {
-        public DeviceContainerConfig SeviceContainerConfig { get; set; }
+        public DeviceContainerConfig DeviceContainerConfig { get; set; }
     }
 }

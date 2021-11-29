@@ -16,8 +16,10 @@ namespace Mod2HW6.Services
 
         public Config GetConfig()
         {
-            var configFile = _reader.ReadFile("confid.json");
-            return JsonConvert.DeserializeObject<Config>(configFile);
+            var configFile = _reader.ReadFile("config.json");
+            var config = JsonConvert.DeserializeObject<Config>(configFile);
+
+            return config;
         }
     }
 }

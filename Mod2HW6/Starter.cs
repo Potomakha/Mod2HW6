@@ -3,6 +3,7 @@ using System.Text;
 using Mod2HW6.Interfaces;
 using Mod2HW6.Models.ElectricalApps;
 using Mod2HW6.Services;
+using Mod2HW6.Extensions;
 
 namespace Mod2HW6
 {
@@ -37,13 +38,18 @@ namespace Mod2HW6
             devices = _deviceContainer.GetComponents();
             var totalPower = _powerCalculation.TotalPower(devices);
 
+            Display(devices);
             Console.WriteLine($"Результирующая мощность оборудования: {totalPower} B");
             Console.WriteLine(string.Empty);
 
             Array.Sort(devices, new AppliancesComparerService());
-            Console.WriteLine("Массив отсортирован по можности");
+            Console.WriteLine("Массив отсортирован по мощности");
             Display(devices);
             Console.WriteLine(string.Empty);
+
+            Console.WriteLine("Выборка приборов:");
+            var filteredArray = devices.Filter("о", 1000);
+            Display(filteredArray);
         }
 
         private void Display(ElectricalApps[] array)
